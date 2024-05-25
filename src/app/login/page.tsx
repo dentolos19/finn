@@ -1,11 +1,14 @@
 "use client";
 
+import { login } from "@/actions";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
+
   return (
     <Container
-    component={"form"}
       sx={{
         maxWidth: {
           xs: "90% !important",
@@ -66,7 +69,11 @@ export default function Page() {
         }}
         variant={"contained"}
         fullWidth
-        href={"/"}
+        onClick={() => {
+          login().then(() => {
+            router.push("/");
+          });
+        }}
       >
         Login
       </Button>

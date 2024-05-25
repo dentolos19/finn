@@ -1,5 +1,6 @@
 "use client";
 
+import HeaderPanel from "@/app/(home)/components/header-panel";
 import MessageContainer from "@/app/(home)/components/message-container";
 import StoryGrid from "@/app/(home)/components/story-grid";
 import StoryPanel from "@/app/(home)/components/story-panel";
@@ -8,9 +9,7 @@ import { transcribeAudio } from "@/interface";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
 import HearingIcon from "@mui/icons-material/Hearing";
-import HelpIcon from "@mui/icons-material/Help";
 import MicIcon from "@mui/icons-material/Mic";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import {
   Box,
   Chip,
@@ -102,29 +101,7 @@ export default function Page() {
         gridTemplateRows: "auto 1fr auto",
       }}
     >
-      <Paper>
-        <Toolbar>
-          <Tooltip title={"More Options"}>
-            <IconButton>
-              <MoreHorizIcon />
-            </IconButton>
-          </Tooltip>
-          <Typography
-            sx={{
-              flexGrow: 1,
-              textAlign: "center",
-            }}
-            variant={"h6"}
-          >
-            Chat With Me
-          </Typography>
-          <Tooltip title={"Help"}>
-            <IconButton>
-              <HelpIcon />
-            </IconButton>
-          </Tooltip>
-        </Toolbar>
-      </Paper>
+      <HeaderPanel />
       <Box
         ref={messagesRef}
         sx={{
