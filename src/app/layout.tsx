@@ -1,12 +1,12 @@
-import LayoutContainer from "@/components/layout-container";
 import theme from "@/lib/theme";
+import { Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Finanical Inclusion",
+  title: "Finn",
   description: "hacksingapore 2024",
 };
 
@@ -21,9 +21,14 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <LayoutContainer>
+            <Box
+              component={"main"}
+              sx={{
+                height: "100dvh",
+              }}
+            >
               {children}
-            </LayoutContainer>
+            </Box>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
