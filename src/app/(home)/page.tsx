@@ -3,6 +3,7 @@
 import MessageContainer from "@/app/(home)/components/message-container";
 import StoryGrid from "@/app/(home)/components/story-grid";
 import StoryPanel from "@/app/(home)/components/story-panel";
+import { transcribeAudio } from "@/interface";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
 import HearingIcon from "@mui/icons-material/Hearing";
@@ -30,24 +31,24 @@ export default function Page() {
 
   useEffect(() => {
     if (!recordingBlob) return;
-    // transcribeAudio(recordingBlob).then((data) => {
-    //   setMessages((prev) => [
-    //     ...prev,
-    //     {
-    //       type: "user",
-    //       message: data.transcription,
-    //       audioBlob: recordingBlob,
-    //     },
-    //   ]);
-    // });
-    setMessages((prev) => [
-      ...prev,
-      {
-        type: "user",
-        message: "Test",
-        audioBlob: recordingBlob,
-      },
-    ]);
+    transcribeAudio(recordingBlob).then((data) => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "user",
+          message: data.transcription,
+          audioBlob: recordingBlob,
+        },
+      ]);
+    });
+    // setMessages((prev) => [
+    //   ...prev,
+    //   {
+    //     type: "user",
+    //     message: "Test",
+    //     audioBlob: recordingBlob,
+    //   },
+    // ]);
   }, [recordingBlob]);
 
   return (
@@ -88,10 +89,8 @@ export default function Page() {
             gap: 1,
           }}
         >
-          {messages.map((message, index) => (
-            <MessageContainer key={index} type={message.type}>
-              {message.message}
-            </MessageContainer>
+          {messages.map((data, index) => (
+            <MessageContainer key={index} type={data.type} message={data.message} />
           ))}
         </Container>
         <Box
@@ -107,18 +106,10 @@ export default function Page() {
         >
           {topicPanelOpen && (
             <StoryGrid>
-              <StoryPanel backgroundSrc={"/assets/kids.jpg"}>
-                CPF Withdrawal
-              </StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/savings.jpg"}>
-                Investment Return
-              </StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/old.jpg"} >
-                Retire Gracefully
-              </StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/money.jpg"} >
-                Inflation
-              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/kids.jpg"}>CPF Withdrawal</StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/savings.jpg"}>Investment Return</StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/old.jpg"}>Retire Gracefully</StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/money.jpg"}>Inflation</StoryPanel>
             </StoryGrid>
           )}
         </Box>
@@ -159,7 +150,7 @@ export default function Page() {
                   }}
                 >
                   <Fab
-                    className={isRecording ? "pulse-button" : ""}
+                    className={isRecording ? "pulsating" : ""}
                     color={"primary"}
                     onClick={() => {
                       if (isRecording) {

@@ -1,9 +1,22 @@
-import { Box, Paper } from "@mui/material";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { Box, Paper, Typography } from "@mui/material";
+import { useState } from "react";
 
 export default function MessageContainer(props: {
-  children?: React.ReactNode;
   type: "bot" | "user";
+  message: string;
 }) {
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const msg = new SpeechSynthesisUtterance();
+  msg.text = props.message;
+  msg.onstart = () => setIsSpeaking(true);
+  msg.onend = () => setIsSpeaking(false);
+
+  const speak = () => {
+    window.speechSynthesis.speak(msg);
+  };
+
   return (
     <Box>
       <Paper
@@ -13,9 +26,12 @@ export default function MessageContainer(props: {
           maxWidth: "90%",
           float: props.type === "bot" ? "left" : "right",
           overflow: "hidden",
+          cursor: "pointer",
         }}
+        onClick={speak}
       >
-        {props.children}
+        <Typography>{props.message} {isSpeaking && <VolumeUpIcon sx={{ marginLeft: 1 }} />}</Typography>
+
       </Paper>
     </Box>
   );
