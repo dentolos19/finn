@@ -1,3 +1,4 @@
+import LayoutContainer from "@/components/layout-container";
 import theme from "@/lib/theme";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -20,7 +21,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <LayoutContainer>
+              {children}
+            </LayoutContainer>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

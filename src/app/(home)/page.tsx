@@ -1,28 +1,41 @@
 "use client";
 
-import { Box, Typography } from "@mui/material";
-import { AudioRecorder } from "react-audio-voice-recorder";
+import { Button, Container } from "@mui/material";
+import { useEffect } from "react";
+import { useAudioRecorder } from "react-audio-voice-recorder";
 
 export default function Page() {
-  const addAudioElement = (blob: Blob) => {
-    const url = URL.createObjectURL(blob);
-    const audio = document.createElement("audio");
-    audio.src = url;
-    audio.controls = true;
-    document.body.appendChild(audio);
-  };
+  const {
+    startRecording,
+    stopRecording,
+    togglePauseResume,
+    recordingBlob,
+    isRecording,
+    isPaused,
+    recordingTime,
+    mediaRecorder,
+  } = useAudioRecorder();
+
+  useEffect(() => {
+    if (!recordingBlob) return;
+
+    // recordingBlob will be present at this point after 'stopRecording' has been called
+  }, [recordingBlob]);
 
   return (
-    <Box>
-      <Typography variant="h1">Home</Typography>
-      <AudioRecorder
-        onRecordingComplete={addAudioElement}
-        audioTrackConstraints={{
-          noiseSuppression: true,
-          echoCancellation: true,
+    <Container>
+      <Button
+        onClick={() => {
+          if (isRecording) {
+            stopRecording();
+          } else {
+            startRecording();
+          }
         }}
-        downloadFileExtension="mp3"
-      />
-    </Box>
+      >
+        {isRecording ? "Stop" : "Start"}
+      </Button>
+      {recordingBlob && <audio src={URL.createObjectURL(recordingBlob)} controls />}
+    </Container>
   );
 }
