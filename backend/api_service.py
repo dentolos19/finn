@@ -1,11 +1,13 @@
 import threading
-import uvicorn
-import realtime
-import transcribe
 
+import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
+
+import realtime
+import transcribe
+
 
 class RealTimeParams(BaseModel):
     model: str = 'medium'
@@ -30,5 +32,5 @@ async def start_transcription(params: TranscribeParams):
     result = transcribe.main(params.file_path)
     return {"transcription": result}
 
-if _name_ == "_main_":
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=5002)

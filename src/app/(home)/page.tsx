@@ -33,6 +33,7 @@ export default function Page() {
 
   useEffect(() => {
     if (!recordingBlob) return;
+
     transcribeAudio(recordingBlob).then((data) => {
       setMessages((prev) => [
         ...prev,

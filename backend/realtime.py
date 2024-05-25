@@ -1,15 +1,16 @@
 import argparse
 import os
-import numpy as np
-import speech_recognition as sr
-import whisper
-import torch
-import pytz
-
 from datetime import datetime, timedelta
 from queue import Queue
-from time import sleep
 from sys import platform
+from time import sleep
+
+import numpy as np
+import pytz
+import speech_recognition as sr
+import torch
+import whisper
+
 
 def main(model='medium', non_english=False, energy_threshold=1000, record_timeout=8, phrase_timeout=8, default_microphone=None):
     parser = argparse.ArgumentParser()
@@ -141,5 +142,5 @@ def main(model='medium', non_english=False, energy_threshold=1000, record_timeou
         print(line)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

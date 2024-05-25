@@ -2,8 +2,9 @@ function getBlobData(blob: Blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onloadend = () => {
-      const base64String = reader.result as string;
-      resolve(base64String);
+      const data = reader.result as string;
+      console.log(data);
+      resolve(data);
     };
     reader.onerror = reject;
     reader.readAsDataURL(blob);

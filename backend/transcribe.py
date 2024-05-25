@@ -1,10 +1,12 @@
+import base64
 import os
-import numpy as np
-import whisper
-import torch
 
-from scipy.io import wavfile
+import numpy as np
+import torch
+import whisper
 from pydub import AudioSegment
+from scipy.io import wavfile
+
 
 def transcribe_audio_file(file_path, model='medium', non_english=False):
     audio = AudioSegment.from_mp3(file_path)
@@ -32,9 +34,12 @@ def transcribe_audio_file(file_path, model='medium', non_english=False):
     os.remove("converted.wav")
     return text
 
-def main():
-    file_path = r"C:\\Users\\haoha\\OneDrive\\Desktop\\personal\\Projects\\Hackathons\\hacksingapore 2024\\fin siri\\transcribeaudio1.mp3"
-    return transcribe_audio_file(file_path)
+def main(data):
+    # file_path = r"C:\\Users\\haoha\\OneDrive\\Desktop\\personal\\Projects\\Hackathons\\hacksingapore 2024\\fin siri\\transcribeaudio1.mp3"
+    decoded_data = base64.b64decode(data)
+    with open("audio.mp3", "wb") as file:
+        file.write(decoded_data)
+    return transcribe_audio_file("audio.mp3")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()
