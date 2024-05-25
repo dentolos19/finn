@@ -12,7 +12,7 @@ Develop a solution that empowers the ageing population to achieve a financially 
 - Dennise (Frontend Developer)
 - De Hui (UI/UX Designer)
 - Dean (Marketing)
-- Jian Wei (The Extra)
+- ~~Jian Wei (The Extra)~~
 
 ## ⚒️ Usage
 

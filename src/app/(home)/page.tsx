@@ -3,6 +3,7 @@
 import MessageContainer from "@/app/(home)/components/message-container";
 import StoryGrid from "@/app/(home)/components/story-grid";
 import StoryPanel from "@/app/(home)/components/story-panel";
+import AnimatedBox from "@/components/animated-box";
 import { transcribeAudio } from "@/interface";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
@@ -10,14 +11,27 @@ import HearingIcon from "@mui/icons-material/Hearing";
 import HelpIcon from "@mui/icons-material/Help";
 import MicIcon from "@mui/icons-material/Mic";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { AppBar, Box, Container, Fab, IconButton, Paper, TextField, Toolbar, Typography } from "@mui/material";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  Box,
+  Chip,
+  Container,
+  Fab,
+  IconButton,
+  Paper,
+  Stack,
+  TextField,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 
 export default function Page() {
-  const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [topicPanelOpen, setTopicPanelOpen] = useState(true);
+  const [audioPanelOpen, setAudioPanelOpen] = useState(false);
+  const [suggestionPanelOpen, setSuggestionPanelOpen] = useState(false);
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<
     {
@@ -47,15 +61,17 @@ export default function Page() {
     <Box
       sx={{
         height: "100%",
-        display: "flex",
-        flexDirection: "column",
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto",
       }}
     >
-      <AppBar>
+      <Paper>
         <Toolbar>
-          <IconButton>
-            <MoreHorizIcon />
-          </IconButton>
+          <Tooltip title={"More Options"}>
+            <IconButton>
+              <MoreHorizIcon />
+            </IconButton>
+          </Tooltip>
           <Typography
             sx={{
               flexGrow: 1,
@@ -65,13 +81,19 @@ export default function Page() {
           >
             Chat With Me
           </Typography>
-          <IconButton>
-            <HelpIcon />
-          </IconButton>
+          <Tooltip title={"Help"}>
+            <IconButton>
+              <HelpIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
-      </AppBar>
-      <Box sx={{ maxHeight: "100%", display: "flex", flexDirection: "column", position: "relative", flexGrow: 1 }}>
-        <Toolbar />
+      </Paper>
+      <Box
+        sx={{
+          position: "relative",
+          overflow: "auto",
+        }}
+      >
         <Container
           sx={{
             paddingY: 2,
@@ -88,7 +110,7 @@ export default function Page() {
         <Box
           sx={{
             position: "absolute",
-            bottom: 0,
+            bottom: 10,
             left: 0,
             width: "100%",
             padding: 2,
@@ -108,8 +130,8 @@ export default function Page() {
       </Box>
       <Paper>
         <AnimatePresence>
-          {audioPanelOpen && (
-            <motion.div
+          {suggestionPanelOpen && (
+            <AnimatedBox
               initial={{
                 height: 0,
               }}
@@ -123,55 +145,81 @@ export default function Page() {
                 duration: 0.2,
               }}
             >
-              <Box sx={{ margin: 1 }}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "flex-end",
-                  }}
-                >
-                  <IconButton onClick={() => setAudioPanelOpen(false)}>
-                    <CloseIcon />
-                  </IconButton>
-                </Box>
-                <Box
-                  sx={{
-                    marginBottom: 2,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Fab
-                    className={isRecording ? "pulsating" : ""}
-                    color={"primary"}
-                    onClick={() => {
-                      if (isRecording) {
-                        stopRecording();
-                      } else {
-                        startRecording();
-                      }
-                    }}
-                  >
-                    {isRecording ? <HearingIcon /> : <MicIcon />}
-                  </Fab>
-                </Box>
-                <Box
-                  sx={{
-                    marginBottom: 4,
-                    display: "flex",
-                    justifyContent: "center",
-                  }}
-                >
-                  <Typography>{isRecording ? "Listening..." : "Press the mic to start recording!"}</Typography>
-                </Box>
+              <Stack direction={"row"} padding={2} spacing={1}>
+                <Chip label={"Hello, world!"} onClick={() => {}} />
+                <Chip label={"Hello, world!"} onClick={() => {}} />
+                <Chip label={"Hello, world!"} onClick={() => {}} />
+                <Chip label={"Hello, world!"} onClick={() => {}} />
+              </Stack>
+            </AnimatedBox>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {audioPanelOpen && (
+            <AnimatedBox
+              initial={{
+                height: 0,
+              }}
+              animate={{
+                height: "auto",
+              }}
+              exit={{
+                height: 0,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
+              sx={{ margin: 1 }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <IconButton onClick={() => setAudioPanelOpen(false)}>
+                  <CloseIcon />
+                </IconButton>
               </Box>
-            </motion.div>
+              <Box
+                sx={{
+                  marginBottom: 2,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Fab
+                  className={isRecording ? "pulsating" : ""}
+                  color={"primary"}
+                  onClick={() => {
+                    if (isRecording) {
+                      stopRecording();
+                    } else {
+                      startRecording();
+                    }
+                  }}
+                >
+                  {isRecording ? <HearingIcon /> : <MicIcon />}
+                </Fab>
+              </Box>
+              <Box
+                sx={{
+                  marginBottom: 4,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography>{isRecording ? "Listening..." : "Press the mic to start recording!"}</Typography>
+              </Box>
+            </AnimatedBox>
           )}
         </AnimatePresence>
         <Toolbar>
-          <IconButton>
-            <AttachFileIcon />
-          </IconButton>
+          <Tooltip title={"Attach File"}>
+            <IconButton>
+              <AttachFileIcon />
+            </IconButton>
+          </Tooltip>
           <TextField
             sx={{
               marginX: 2,
@@ -196,14 +244,16 @@ export default function Page() {
               }
             }}
           />
-          <IconButton
-            onClick={() => {
-              setTopicPanelOpen(false);
-              setAudioPanelOpen(!audioPanelOpen);
-            }}
-          >
-            <MicIcon color={"info"} />
-          </IconButton>
+          <Tooltip title={"Voice Message"}>
+            <IconButton
+              onClick={() => {
+                setTopicPanelOpen(false);
+                setAudioPanelOpen(!audioPanelOpen);
+              }}
+            >
+              <MicIcon color={"info"} />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </Paper>
     </Box>
