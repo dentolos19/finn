@@ -65,8 +65,16 @@ export default function LayoutContainer(props: {
             <MicIcon />
           </IconButton> */}
           <Box>
-            <Fab>
-              <MicIcon/>
+            <Fab
+              onClick={() => {
+                if (isRecording) {
+                  stopRecording();
+                } else {
+                  startRecording();
+                }
+              }}
+            >
+              <MicIcon />
             </Fab>
           </Box>
           <Typography variant={"subtitle2"}>{isRecording ? "Recording" : "Record"}</Typography>
