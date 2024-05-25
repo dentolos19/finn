@@ -1,13 +1,11 @@
 import threading
-
 import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
-
 import realtime
 import transcribe
 
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from pydantic import BaseModel
 
 class RealTimeParams(BaseModel):
     model: str = 'medium'
@@ -28,9 +26,9 @@ async def start_recording(params: RealTimeParams):
     return FileResponse("output.txt", media_type="text/plain", filename="output.txt")
 
 @app.post("/transcribe")
-async def start_transcription(params: TranscribeParams):
-    result = transcribe.main(params.file_path)
+async def start_transcription():
+    result = transcribe.main()
     return {"transcription": result}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=5002)
+    uvicorn.run(app, host="0.0.0.0", port=5000)
