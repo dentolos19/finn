@@ -16,6 +16,7 @@ export default function StoryPanel(props: {
         backgroundSize: "cover",
         backdropFilter: "brightness(60%)", // TODO: fix this
       }}
+      onClick={props.onClick}
     >
       {props.children}
     </Paper>

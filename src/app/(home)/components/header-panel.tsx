@@ -1,4 +1,4 @@
-import { logout } from "@/actions";
+import { deleteSession } from "@/session";
 import HelpIcon from "@mui/icons-material/Help";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -16,7 +16,9 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function HeaderPanel() {
+export default function HeaderPanel(props: {
+  onHelp?: () => void;
+}) {
   const router = useRouter();
 
   const [menuAnchor, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -29,7 +31,7 @@ export default function HeaderPanel() {
   };
 
   const handleLogout = () => {
-    logout().then(() => {
+    deleteSession().then(() => {
       router.push("/login");
     });
   };
@@ -60,7 +62,7 @@ export default function HeaderPanel() {
           Chat With Me
         </Typography>
         <Tooltip title={"Help"}>
-          <IconButton>
+          <IconButton onClick={props.onHelp}>
             <HelpIcon />
           </IconButton>
         </Tooltip>

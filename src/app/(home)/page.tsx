@@ -5,6 +5,7 @@ import MessageContainer from "@/app/(home)/components/message-container";
 import StoryGrid from "@/app/(home)/components/story-grid";
 import StoryPanel from "@/app/(home)/components/story-panel";
 import AnimatedBox from "@/components/animated-box";
+import storyboard from "@/data/storyboard.json";
 import { transcribeAudio } from "@/interface";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
@@ -41,6 +42,13 @@ export default function Page() {
       isLoading?: boolean;
     }[]
   >([]);
+  const [story, setStory] = useState<{
+    message: string;
+    options?: {
+      label: string;
+      next: number;
+    }[];
+  }>();
 
   const { startRecording, stopRecording, recordingBlob, isRecording } = useAudioRecorder();
 
@@ -50,6 +58,41 @@ export default function Page() {
     } else {
       startRecording();
     }
+  };
+
+  const startStory = () => {
+    const story = storyboard[0];
+    setStory(story);
+    setMessages((prev) => [
+      ...prev,
+      {
+        type: "bot",
+        message: story.message,
+      },
+    ]);
+    setSuggestionPanelOpen(true);
+    setTopicPanelOpen(false);
+  };
+
+  const nextStory = (option: {
+    label: string;
+    next: number;
+  }) => {
+    const story = storyboard[option.next];
+    setStory(story);
+    setMessages((prev) => [
+      ...prev,
+      {
+        type: "user",
+        message: option.label,
+      },
+      {
+        type: "bot",
+        message: story.message,
+      },
+    ]);
+    setSuggestionPanelOpen(story.options !== undefined);
+    setTopicPanelOpen(false);
   };
 
   useEffect(() => {
@@ -101,7 +144,7 @@ export default function Page() {
         gridTemplateRows: "auto 1fr auto",
       }}
     >
-      <HeaderPanel />
+      <HeaderPanel onHelp={() => setTopicPanelOpen(!topicPanelOpen)} />
       <Box
         ref={messagesRef}
         sx={{
@@ -137,10 +180,18 @@ export default function Page() {
         >
           {topicPanelOpen && (
             <StoryGrid>
-              <StoryPanel backgroundSrc={"/assets/kids.jpg"}>CPF Withdrawal</StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/savings.jpg"}>Investment Return</StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/old.jpg"}>Retire Gracefully</StoryPanel>
-              <StoryPanel backgroundSrc={"/assets/money.jpg"}>Inflation</StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/kids.jpg"} onClick={startStory}>
+                CPF Withdrawal
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/savings.jpg"} onClick={startStory}>
+                Investment Return
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/old.jpg"} onClick={startStory}>
+                Retire Gracefully
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/money.jpg"} onClick={startStory}>
+                Inflation
+              </StoryPanel>
             </StoryGrid>
           )}
         </Box>
@@ -162,12 +213,19 @@ export default function Page() {
                 duration: 0.2,
               }}
             >
-              <Stack direction={"row"} padding={2} spacing={1}>
-                <Chip label={"Hello, world!"} onClick={() => {}} />
-                <Chip label={"Hello, world!"} onClick={() => {}} />
-                <Chip label={"Hello, world!"} onClick={() => {}} />
-                <Chip label={"Hello, world!"} onClick={() => {}} />
-              </Stack>
+              {story?.options && (
+                <Stack direction={"row"} padding={2} spacing={1}>
+                  {story?.options.map((option, index) => (
+                    <Chip
+                      key={index}
+                      label={option.label}
+                      onClick={() => {
+                        nextStory(option);
+                      }}
+                    />
+                  ))}
+                </Stack>
+              )}
             </AnimatedBox>
           )}
         </AnimatePresence>

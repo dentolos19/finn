@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "@/actions";
+import { createSession } from "@/session";
 import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 
@@ -70,7 +70,7 @@ export default function Page() {
         variant={"contained"}
         fullWidth
         onClick={() => {
-          login().then(() => {
+          createSession("hellobois").then(() => {
             router.push("/");
           });
         }}
