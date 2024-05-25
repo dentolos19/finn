@@ -169,7 +169,7 @@ export default function Page() {
         </AnimatePresence>
         <Box
           sx={{
-            position: "absolute",
+            position: "sticky",
             bottom: 10,
             left: 0,
             width: "100%",
