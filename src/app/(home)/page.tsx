@@ -156,6 +156,7 @@ export default function Page() {
               flexGrow: 1,
             }}
             size={"small"}
+            placeholder={"Write something..."}
             fullWidth
           />
           <IconButton onClick={() => setPanelOpen(!panelOpen)}>
