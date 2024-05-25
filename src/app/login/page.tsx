@@ -5,6 +5,7 @@ import { Box, Button, Container, Paper, TextField, Typography } from "@mui/mater
 export default function Page() {
   return (
     <Container
+    component={"form"}
       sx={{
         maxWidth: {
           xs: "90% !important",

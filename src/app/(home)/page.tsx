@@ -1,5 +1,8 @@
 "use client";
 
+import MessageContainer from "@/app/(home)/components/message-container";
+import StoryGrid from "@/app/(home)/components/story-grid";
+import StoryPanel from "@/app/(home)/components/story-panel";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
 import HearingIcon from "@mui/icons-material/Hearing";
@@ -86,24 +89,9 @@ export default function Page() {
           }}
         >
           {messages.map((message, index) => (
-            <Box key={index}>
-              <Paper
-                sx={{
-                  padding: 2,
-                  width: "fit-content",
-                  maxWidth: "90%",
-                  float: message.type === "bot" ? "left" : "right",
-                  overflow: "hidden",
-                }}
-              >
-                {message.message}
-                {message.audioBlob && (
-                  <audio controls>
-                    <source src={URL.createObjectURL(message.audioBlob)} />
-                  </audio>
-                )}
-              </Paper>
-            </Box>
+            <MessageContainer key={index} type={message.type}>
+              {message.message}
+            </MessageContainer>
           ))}
         </Container>
         <Box
@@ -118,78 +106,20 @@ export default function Page() {
           }}
         >
           {topicPanelOpen && (
-            <Box>
-              <Typography
-                sx={{
-                  marginBottom: 2,
-                  textAlign: "center",
-                }}
-              >
-                What would you like to know today?
-              </Typography>
-              <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gridTemplateRows: "1fr 1fr",
-                  placeItems: "center",
-                  gap: 2,
-                }}
-              >
-                <Paper
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    padding: 1,
-                    cursor: "pointer",
-                    backgroundImage: "url('/assets/kids.jpg')",
-                    backgroundSize: "cover",
-                    backdropFilter: "brightness(60%)",
-                  }}
-                >
-                  CPF Withdrawal
-                </Paper>
-                <Paper
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    padding: 1,
-                    cursor: "pointer",
-                    backgroundImage: "url('/assets/savings.jpg')",
-                    backgroundSize: "cover",
-                    backdropFilter: "brightness(60%)",
-                  }}
-                >
-                  Investment Return
-                </Paper>
-                <Paper
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    padding: 1,
-                    cursor: "pointer",
-                    backgroundImage: "url('/assets/old.jpg')",
-                    backgroundSize: "cover",
-                    backdropFilter: "brightness(60%)",
-                  }}
-                >
-                  Retire Gracefully
-                </Paper>
-                <Paper
-                  sx={{
-                    width: 120,
-                    height: 120,
-                    padding: 1,
-                    cursor: "pointer",
-                    backgroundImage: "url('/assets/money.jpg')",
-                    backgroundSize: "cover",
-                    backdropFilter: "brightness(60%)",
-                  }}
-                >
-                  Inflation
-                </Paper>
-              </Box>
-            </Box>
+            <StoryGrid>
+              <StoryPanel backgroundSrc={"/assets/kids.jpg"}>
+                CPF Withdrawal
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/savings.jpg"}>
+                Investment Return
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/old.jpg"} >
+                Retire Gracefully
+              </StoryPanel>
+              <StoryPanel backgroundSrc={"/assets/money.jpg"} >
+                Inflation
+              </StoryPanel>
+            </StoryGrid>
           )}
         </Box>
       </Box>
@@ -197,9 +127,6 @@ export default function Page() {
         <AnimatePresence>
           {audioPanelOpen && (
             <motion.div
-              style={{
-                zIndex: 100000000,
-              }}
               initial={{
                 height: 0,
               }}
