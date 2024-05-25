@@ -41,14 +41,6 @@ export default function Page() {
         },
       ]);
     });
-    // setMessages((prev) => [
-    //   ...prev,
-    //   {
-    //     type: "user",
-    //     message: "Test",
-    //     audioBlob: recordingBlob,
-    //   },
-    // ]);
   }, [recordingBlob]);
 
   return (
