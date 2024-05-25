@@ -25,10 +25,12 @@ import {
   Typography,
 } from "@mui/material";
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAudioRecorder } from "react-audio-voice-recorder";
 
 export default function Page() {
+  const messagesRef = useRef<HTMLDivElement>(null);
+
   const [topicPanelOpen, setTopicPanelOpen] = useState(true);
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [suggestionPanelOpen, setSuggestionPanelOpen] = useState(false);
@@ -37,25 +39,60 @@ export default function Page() {
     {
       type: "bot" | "user";
       message: string;
-      audioBlob?: Blob;
+      isLoading?: boolean;
     }[]
   >([]);
 
   const { startRecording, stopRecording, recordingBlob, isRecording } = useAudioRecorder();
 
+  const toggleRecording = () => {
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
+  };
+
   useEffect(() => {
     if (!recordingBlob) return;
-    transcribeAudio(recordingBlob).then((data) => {
-      setMessages((prev) => [
-        ...prev,
-        {
-          type: "user",
-          message: data.transcription,
-          audioBlob: recordingBlob,
-        },
-      ]);
-    });
+    setMessages((prev) => [
+      ...prev,
+      {
+        type: "user",
+        message: "Recording...",
+        isLoading: true,
+      },
+    ]);
+    transcribeAudio(recordingBlob)
+      .then((data) => {
+        setMessages((prev) => [
+          ...prev.filter((message) => !message.isLoading),
+          {
+            type: "user",
+            message: data.transcription,
+          },
+        ]);
+      })
+      .catch(() => {
+        setMessages((prev) => [
+          ...prev.filter((message) => !message.isLoading),
+          {
+            type: "user",
+            message: "An error occurred while transcribing the audio.",
+          },
+        ]);
+      });
   }, [recordingBlob]);
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies:
+  useEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo({
+        top: messagesRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages]);
 
   return (
     <Box
@@ -89,24 +126,27 @@ export default function Page() {
         </Toolbar>
       </Paper>
       <Box
+        ref={messagesRef}
         sx={{
           position: "relative",
           overflow: "auto",
         }}
       >
-        <Container
-          sx={{
-            paddingY: 2,
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          {messages.map((data, index) => (
-            <MessageContainer key={index} type={data.type} message={data.message} />
-          ))}
-        </Container>
+        <AnimatePresence>
+          <Container
+            sx={{
+              paddingY: 2,
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+            }}
+          >
+            {messages.map((data, index) => (
+              <MessageContainer key={index} type={data.type} message={data.message} isLoading={data.isLoading} />
+            ))}
+          </Container>
+        </AnimatePresence>
         <Box
           sx={{
             position: "absolute",
@@ -188,17 +228,7 @@ export default function Page() {
                   justifyContent: "center",
                 }}
               >
-                <Fab
-                  className={isRecording ? "pulsating" : ""}
-                  color={"primary"}
-                  onClick={() => {
-                    if (isRecording) {
-                      stopRecording();
-                    } else {
-                      startRecording();
-                    }
-                  }}
-                >
+                <Fab className={isRecording ? "pulsating" : ""} color={"primary"} onClick={toggleRecording}>
                   {isRecording ? <HearingIcon /> : <MicIcon />}
                 </Fab>
               </Box>

@@ -1,10 +1,14 @@
+import AnimatedBox from "@/components/animated-box";
+import theme from "@/theme";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { useState } from "react";
+import { BeatLoader } from "react-spinners";
 
 export default function MessageContainer(props: {
   type: "bot" | "user";
   message: string;
+  isLoading?: boolean;
 }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
@@ -18,7 +22,17 @@ export default function MessageContainer(props: {
   };
 
   return (
-    <Box>
+    <AnimatedBox
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      transition={{
+        duration: 0.4,
+      }}
+    >
       <Paper
         sx={{
           padding: 2,
@@ -30,9 +44,14 @@ export default function MessageContainer(props: {
         }}
         onClick={speak}
       >
-        <Typography>{props.message} {isSpeaking && <VolumeUpIcon sx={{ marginLeft: 1 }} />}</Typography>
-
+        {props.isLoading ? (
+          <BeatLoader color={theme.palette.mode === "dark" ? "#FFFFFF" : "#000000"} size={5} />
+        ) : (
+          <Typography>
+            {props.message} {isSpeaking && <VolumeUpIcon sx={{ marginLeft: 1 }} />}
+          </Typography>
+        )}
       </Paper>
-    </Box>
+    </AnimatedBox>
   );
 }
