@@ -18,6 +18,7 @@ export function transcribeAudio(blob: Blob) {
     return fetch(`${baseUrl}/transcribe`, {
       method: "POST",
       headers: {
+        "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({ file_path: data }),
