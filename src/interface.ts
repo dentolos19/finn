@@ -5,8 +5,7 @@ function getBlobData(blob: Blob) {
     const reader = new FileReader();
     reader.onloadend = () => {
       const data = reader.result as string;
-      console.log(data);
-      resolve(data);
+      resolve(data.substr(data.indexOf(",") + 1));
     };
     reader.onerror = reject;
     reader.readAsDataURL(blob);

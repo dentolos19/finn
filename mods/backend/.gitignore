@@ -8,6 +8,10 @@
 # Cache files
 __pycache__/
 
+# Project-specific files
+audio.webm
+audio.mp3
+
 # Miscellaneous files
 .DS_Store
 Desktop.ini

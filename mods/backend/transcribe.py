@@ -1,5 +1,6 @@
 import base64
 import os
+import subprocess
 
 import numpy as np
 import torch
@@ -9,11 +10,11 @@ from scipy.io import wavfile
 
 
 def transcribe_audio_file(file_path, model="medium", non_english=False):
-    audio = AudioSegment.from_file(file_path)
-    audio = audio.set_frame_rate(16000)
-    audio.export("converted.wav", format="wav")
+    # audio = AudioSegment.from_mp3(file_path)
+    # audio = audio.set_frame_rate(16000)
+    # audio.export("converted.wav", format="wav")
 
-    sample_rate, audio_data = wavfile.read("converted.wav")
+    sample_rate, audio_data = wavfile.read(file_path)
 
     audio_np = np.frombuffer(audio_data, dtype=np.int16).astype(np.float32) / 32768.0
 
@@ -33,7 +34,7 @@ def transcribe_audio_file(file_path, model="medium", non_english=False):
     print("\n\nTranscription:")
     print(text)
 
-    os.remove("converted.wav")
+    os.remove("audio.wav")
     return text
 
 
@@ -45,7 +46,9 @@ def main(data: str):
     decoded_data = base64.b64decode(data)
     with open("audio.webm", "wb") as file:
         file.write(decoded_data)
-    return transcribe_audio_file("audio.webm")
+    subprocess.call(["../ffmpeg/bin/ffmpeg.exe", "-i", "audio.webm", "audio.wav"])
+    os.remove("audio.webm")
+    return transcribe_audio_file("audio.wav")
 
 
 if __name__ == "__main__":
