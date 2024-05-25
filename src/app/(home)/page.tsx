@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 
 export default function Page() {
   const [isRecording, setIsRecording] = useState(false);
-  const [audio, setAudio] = useState();
+  const [audio, setAudio] = useState("");
   const [audioBlobURL, setAudioBlobURL] = useState("");
 
   const recorder = useMemo(() => new MicRecorder({ bitRate: 128, encoder: "mp3" }), []);
@@ -36,10 +36,12 @@ export default function Page() {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
-          const base64data = reader.result;
-          // Only send the base64 string
-          const base64String = base64data.split(",")[1];
-          setAudio(base64String);
+          const buffer = reader.result;
+          if (typeof buffer !== "string") {
+            return;
+          }
+          const data = buffer.split(",")[1];
+          setAudio(data);
         };
       })
       .catch(() => {
