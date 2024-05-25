@@ -1,6 +1,7 @@
 "use client";
 
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import HomeIcon from "@mui/icons-material/Home";
 import MicIcon from "@mui/icons-material/Mic";
 import { BottomNavigation, BottomNavigationAction, Box, Fab, Paper, Typography } from "@mui/material";
@@ -74,7 +75,7 @@ export default function LayoutContainer(props: {
                 }
               }}
             >
-              <MicIcon />
+              {isRecording ? <GraphicEqIcon /> : <MicIcon />}
             </Fab>
           </Box>
           <Typography variant={"subtitle2"}>{isRecording ? "Recording" : "Record"}</Typography>
