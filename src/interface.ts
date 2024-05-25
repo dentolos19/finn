@@ -1,3 +1,5 @@
+const baseUrl = "http://localhost:5000";
+
 function getBlobData(blob: Blob) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -13,7 +15,7 @@ function getBlobData(blob: Blob) {
 
 export function transcribeAudio(blob: Blob) {
   return getBlobData(blob).then((data) => {
-    return fetch("https://localhost:5000/transcribe", {
+    return fetch(`${baseUrl}/transcribe`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

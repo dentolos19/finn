@@ -1,0 +1,17 @@
+import type { NextRequest } from "next/server";
+
+export async function middleware(req: NextRequest) {
+  const path = req.nextUrl.pathname;
+  // const session = await getSession();
+
+  // if (path === "/login" && session) {
+  //   const res = NextResponse.redirect(new URL("/admin", req.nextUrl));
+  //   return await updateSession(req, res);
+  // }
+
+  // if (path.includes("/admin") && !session) {
+  //   return NextResponse.redirect(new URL("/login", req.nextUrl));
+  // }
+
+  // return await updateSession(req);
+}

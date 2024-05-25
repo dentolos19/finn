@@ -11,7 +11,8 @@
   "linter": {
     "rules": {
       "a11y": {
-        "noSvgWithoutTitle": "off"
+        "noSvgWithoutTitle": "off",
+        "useMediaCaption": "off"
       },
       "suspicious": {
         "noArrayIndexKey": "off"

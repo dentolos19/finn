@@ -9,7 +9,7 @@ from scipy.io import wavfile
 
 
 def transcribe_audio_file(file_path, model='medium', non_english=False):
-    audio = AudioSegment.from_mp3(file_path)
+    audio = AudioSegment.from_file(file_path, format="webm")
     audio = audio.set_frame_rate(16000)
     audio.export("converted.wav", format="wav")
 
@@ -34,12 +34,12 @@ def transcribe_audio_file(file_path, model='medium', non_english=False):
     os.remove("converted.wav")
     return text
 
-def main(data):
+def main(data: str):
     # file_path = r"C:\\Users\\haoha\\OneDrive\\Desktop\\personal\\Projects\\Hackathons\\hacksingapore 2024\\fin siri\\transcribeaudio1.mp3"
     decoded_data = base64.b64decode(data)
-    with open("audio.mp3", "wb") as file:
+    with open("audio.webm", "wb") as file:
         file.write(decoded_data)
-    return transcribe_audio_file("audio.mp3")
+    return transcribe_audio_file("audio.webm")
 
 if __name__ == "__main__":
     main()

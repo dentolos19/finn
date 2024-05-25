@@ -1,14 +1,36 @@
 "use client";
 
-import { Button, Container, Paper, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Paper, TextField, Typography } from "@mui/material";
 
 export default function Page() {
   return (
     <Container
       sx={{
+        maxWidth: {
+          xs: "90% !important",
+          sm: "50% !important",
+          md: "30% !important",
+        },
         height: "100%",
       }}
     >
+      <Box
+        sx={{
+          marginTop: 4,
+          marginBottom: 2,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={"/assets/family.png"}
+          alt={"Banner"}
+          style={{
+            width: "60%",
+            height: "100%",
+          }}
+        />
+      </Box>
       <Typography
         sx={{
           marginBottom: 2,
@@ -25,7 +47,7 @@ export default function Page() {
       >
         <Typography>Email</Typography>
         <TextField size={"small"} fullWidth />
-        <Typography>Password</Typography>
+        <Typography sx={{ marginTop: 2 }}>Password</Typography>
         <TextField size={"small"} type={"password"} fullWidth />
       </Paper>
       <Typography
@@ -43,6 +65,7 @@ export default function Page() {
         }}
         variant={"contained"}
         fullWidth
+        href={"/"}
       >
         Login
       </Button>
