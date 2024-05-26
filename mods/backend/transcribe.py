@@ -1,6 +1,7 @@
 import base64
 import os
 import subprocess
+# import sqlite3
 
 import numpy as np
 import torch
@@ -34,10 +35,35 @@ def transcribe_audio_file(file_path, model="medium", non_english=False):
     print("\n\nTranscription:")
     print(text)
 
+    # Save transcription to SQLite3 database (uncomment when ready)
+    # save_transcription_to_db(text)
+
     os.remove("audio.wav")
     os.remove("audio-framed.wav")
     return text
 
+# def save_transcription_to_db(text):
+#     """
+#     Save transcription to SQLite3 database.
+#     """
+#     # Connect to SQLite3 database (it will create the database if it doesn't exist)
+#     conn = sqlite3.connect("chatbot_output.db")
+#     cursor = conn.cursor()
+#
+#     # Create table if it doesn't exist
+#     cursor.execute("""
+#     CREATE TABLE IF NOT EXISTS transcriptions (
+#         id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         transcription TEXT NOT NULL
+#     )
+#     """)
+#
+#     # Insert transcription into the table
+#     cursor.execute("INSERT INTO transcriptions (transcription) VALUES (?)", (text,))
+#
+#     # Commit changes and close connection
+#     conn.commit()
+#     conn.close()
 
 def main(data: str):
     # file_path = r"C:\\Users\\haoha\\OneDrive\\Desktop\\personal\\Projects\\Hackathons\\hacksingapore 2024\\fin siri\\transcribeaudio1.mp3"
