@@ -59,7 +59,7 @@ export default function HeaderPanel(props: {
           }}
           variant={"h6"}
         >
-          Chat With Me
+          Finn
         </Typography>
         <Tooltip title={"Help"}>
           <IconButton onClick={props.onHelp}>

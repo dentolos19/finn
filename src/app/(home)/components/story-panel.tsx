@@ -8,13 +8,14 @@ export default function StoryPanel(props: {
   return (
     <Paper
       sx={{
-        width: 120,
-        height: 120,
+        width: 125,
+        height: 125,
         padding: 1,
         cursor: "pointer",
         backgroundImage: `url('${props.backgroundSrc}')`,
         backgroundSize: "cover",
         backdropFilter: "brightness(60%)", // TODO: fix this
+        textShadow: "2px 1px 1px black",
       }}
       onClick={props.onClick}
     >

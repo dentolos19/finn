@@ -8,7 +8,20 @@
       },
       {
         "label": "Above 55-years-olds",
-        "next": 1
+        "next": 2
+      }
+    ]
+  },
+  {
+    "message": "Are you currently employed?",
+    "options": [
+      {
+        "label": "Yes",
+        "next": 3
+      },
+      {
+        "label": "No",
+        "next": 4
       }
     ]
   },
@@ -17,11 +30,37 @@
     "options": [
       {
         "label": "Yes",
-        "next": 2
+        "next": 5
       },
       {
         "label": "No",
-        "next": 2
+        "next": 6
+      }
+    ]
+  },
+  {
+    "message": "Are you interested in learning about financial assistance programs?",
+    "options": [
+      {
+        "label": "Yes",
+        "next": 7
+      },
+      {
+        "label": "No",
+        "next": 8
+      }
+    ]
+  },
+  {
+    "message": "Would you like to know about saving and investment options?",
+    "options": [
+      {
+        "label": "Yes",
+        "next": 9
+      },
+      {
+        "label": "No",
+        "next": 10
       }
     ]
   },

@@ -7,6 +7,7 @@ import StoryPanel from "@/app/(home)/components/story-panel";
 import AnimatedBox from "@/components/animated-box";
 import storyboard from "@/data/storyboard.json";
 import { transcribeAudio } from "@/interface";
+import { delay } from "@/utils";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import CloseIcon from "@mui/icons-material/Close";
 import HearingIcon from "@mui/icons-material/Hearing";
@@ -86,11 +87,16 @@ export default function Page() {
         type: "user",
         message: option.label,
       },
-      {
-        type: "bot",
-        message: story.message,
-      },
     ]);
+    delay(1000).then(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "bot",
+          message: story.message,
+        },
+      ]);
+    });
     setSuggestionPanelOpen(story.options !== undefined);
     setTopicPanelOpen(false);
   };
