@@ -62,6 +62,33 @@ export default function Page() {
     }
   };
 
+  const sendMessage = () => {
+    setTopicPanelOpen(false);
+    setDisclaimerPanelOpen(false);
+    setMessages((prev) => [
+      ...prev,
+      {
+        type: "user",
+        message,
+      },
+      {
+        type: "bot",
+        message: "Responding",
+        isLoading: true,
+      },
+    ]);
+    delay(2000).then(() => {
+      setMessages((prev) => [
+        ...prev.filter((message) => !message.isLoading),
+        {
+          type: "bot",
+          message: "I'm sorry, I am not available right now. Please try again later.",
+        },
+      ]);
+    });
+    setMessage("");
+  };
+
   const startStory = () => {
     const story = storyboard[0];
     setStory(story);
@@ -344,16 +371,7 @@ export default function Page() {
             onChange={(e) => setMessage(e.target.value)}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
-                setTopicPanelOpen(false);
-                setDisclaimerPanelOpen(false);
-                setMessages((prev) => [
-                  ...prev,
-                  {
-                    type: "user",
-                    message,
-                  },
-                ]);
-                setMessage("");
+                sendMessage();
               }
             }}
           />
