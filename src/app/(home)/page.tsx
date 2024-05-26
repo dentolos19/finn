@@ -35,6 +35,7 @@ export default function Page() {
   const [topicPanelOpen, setTopicPanelOpen] = useState(true);
   const [audioPanelOpen, setAudioPanelOpen] = useState(false);
   const [suggestionPanelOpen, setSuggestionPanelOpen] = useState(false);
+  const [disclaimerPanelOpen, setDisclaimerPanelOpen] = useState(true);
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<
     {
@@ -73,6 +74,7 @@ export default function Page() {
     ]);
     setSuggestionPanelOpen(true);
     setTopicPanelOpen(false);
+    setDisclaimerPanelOpen(false);
   };
 
   const nextStory = (option: {
@@ -173,6 +175,21 @@ export default function Page() {
             ))}
           </Container>
         </AnimatePresence>
+        {disclaimerPanelOpen && (
+          <Box
+            sx={{
+              width: "100%",
+              position: "absolute",
+              bottom: 10,
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant={"caption"} width={"70%"} color={"GrayText"} align={"center"}>
+              We use your data to provide you with a better experience. You may opt out anytime.
+            </Typography>
+          </Box>
+        )}
         <Box
           sx={{
             position: "sticky",
@@ -304,6 +321,7 @@ export default function Page() {
             onKeyUp={(e) => {
               if (e.key === "Enter") {
                 setTopicPanelOpen(false);
+                setDisclaimerPanelOpen(false);
                 setMessages((prev) => [
                   ...prev,
                   {
@@ -320,6 +338,7 @@ export default function Page() {
               onClick={() => {
                 setTopicPanelOpen(false);
                 setAudioPanelOpen(!audioPanelOpen);
+                setDisclaimerPanelOpen(false);
               }}
             >
               <MicIcon color={"info"} />

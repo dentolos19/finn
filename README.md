@@ -6,6 +6,21 @@ Simplify your retirement planning with personal financial advice, provided by AI
 
 Develop a solution that empowers the ageing population to achieve a financially secure retirement as the country becomes more affluent.
 
+### Tech Stack
+
+#### Frontend
+
+- Node.js
+- Next.js
+- React
+- Material UI
+
+#### Backend
+
+- Python
+- SQLite
+- Torch
+
 ### Team Members
 
 - Hao Han (Leader/Backend Developer)
