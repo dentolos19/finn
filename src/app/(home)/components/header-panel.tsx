@@ -1,8 +1,11 @@
 import { deleteSession } from "@/session";
 import HelpIcon from "@mui/icons-material/Help";
+import HistoryIcon from "@mui/icons-material/History";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import SettingsIcon from "@mui/icons-material/Settings";
 import {
+  Divider,
   IconButton,
   ListItemIcon,
   ListItemText,
@@ -45,6 +48,19 @@ export default function HeaderPanel(props: {
           </IconButton>
         </Tooltip>
         <Menu anchorEl={menuAnchor} open={menuOpen} onClose={handleMenuClose}>
+          <MenuItem onClick={handleMenuClose}>
+            <ListItemIcon>
+              <HistoryIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>History</ListItemText>
+          </MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <ListItemIcon>
+              <SettingsIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText>Settings</ListItemText>
+          </MenuItem>
+          <Divider />
           <MenuItem onClick={handleLogout}>
             <ListItemIcon>
               <LogoutIcon fontSize="small" />
