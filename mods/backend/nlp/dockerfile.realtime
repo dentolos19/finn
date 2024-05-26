@@ -1,0 +1,19 @@
+# Use the official Python image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && apt-get install -y git ffmpeg libavcodec-extra portaudio19-dev && \
+    python3 -m pip install --upgrade pip
+
+# Copy the requirements file and install dependencies
+COPY ../requirements.txt .
+RUN python3 -m pip install --no-cache-dir -r requirements.txt
+
+# Copy the real-time script
+COPY realtime.py .
+
+# Run the real-time script
+CMD ["python3", "realtime.py"]
