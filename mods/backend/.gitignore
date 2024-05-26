@@ -11,6 +11,8 @@ __pycache__/
 # Project-specific files
 audio.webm
 audio.mp3
+audio.wav
+audio-framed.wav
 
 # Miscellaneous files
 .DS_Store

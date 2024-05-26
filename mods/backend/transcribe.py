@@ -10,11 +10,11 @@ from scipy.io import wavfile
 
 
 def transcribe_audio_file(file_path, model="medium", non_english=False):
-    # audio = AudioSegment.from_mp3(file_path)
-    # audio = audio.set_frame_rate(16000)
-    # audio.export("converted.wav", format="wav")
+    audio = AudioSegment.from_wav(file_path)
+    audio = audio.set_frame_rate(16000)
+    audio.export("audio-framed.wav", format="wav")
 
-    sample_rate, audio_data = wavfile.read(file_path)
+    sample_rate, audio_data = wavfile.read("audio-framed.wav")
 
     audio_np = np.frombuffer(audio_data, dtype=np.int16).astype(np.float32) / 32768.0
 
@@ -35,6 +35,7 @@ def transcribe_audio_file(file_path, model="medium", non_english=False):
     print(text)
 
     os.remove("audio.wav")
+    os.remove("audio-framed.wav")
     return text
 
 
