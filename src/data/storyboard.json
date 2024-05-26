@@ -7,8 +7,8 @@
         "next": 1
       },
       {
-        "label": "Above 55-years-olds",
-        "next": 2
+        "label": "Above 55-years-old",
+        "next": 1
       }
     ]
   },
@@ -17,11 +17,11 @@
     "options": [
       {
         "label": "Yes",
-        "next": 3
+        "next": 2
       },
       {
         "label": "No",
-        "next": 4
+        "next": 3
       }
     ]
   },
@@ -30,11 +30,11 @@
     "options": [
       {
         "label": "Yes",
-        "next": 5
+        "next": 4
       },
       {
         "label": "No",
-        "next": 6
+        "next": 4
       }
     ]
   },
@@ -43,11 +43,11 @@
     "options": [
       {
         "label": "Yes",
-        "next": 7
+        "next": 5
       },
       {
         "label": "No",
-        "next": 8
+        "next": 5
       }
     ]
   },
@@ -56,11 +56,11 @@
     "options": [
       {
         "label": "Yes",
-        "next": 9
+        "next": 6
       },
       {
         "label": "No",
-        "next": 10
+        "next": 6
       }
     ]
   },

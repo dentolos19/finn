@@ -1,6 +1,6 @@
 # Finn
 
-A finanical AI bot for advising the community!
+Simplify your retirement planning with personal financial advice, provided by AI-boosted advisor on your phone.
 
 ## 🫂 Project Information
 
