@@ -113,6 +113,30 @@ export default function Page() {
         isLoading: true,
       },
     ]);
+    // delay(2000).then(() => {
+    //   setMessages((prev) => [
+    //     ...prev.filter((message) => !message.isLoading),
+    //     {
+    //       type: "user",
+    //       message: "How much money do I need to retire?",
+    //     },
+    //     {
+    //       type: "bot",
+    //       message: "Compositing...",
+    //       isLoading: true,
+    //     },
+    //   ]);
+    // });
+    // delay(5000).then(() => {
+    //   setMessages((prev) => [
+    //     ...prev.filter((message) => !message.isLoading),
+    //     {
+    //       type: "bot",
+    //       message:
+    //         "The amount needed for a comfortable retirement varies based on your lifestyle, monthly expenses, and how long you expect to live. A common rule of thumb is to aim for 70-80% of your pre-retirement income.",
+    //     },
+    //   ]);
+    // });
     transcribeAudio(recordingBlob)
       .then((data) => {
         setMessages((prev) => [

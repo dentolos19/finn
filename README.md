@@ -4,22 +4,7 @@ Simplify your retirement planning with personal financial advice, provided by AI
 
 ## 🫂 Project Information
 
-Develop a solution that empowers the ageing population to achieve a financially secure retirement as the country becomes more affluent.
-
-### Tech Stack
-
-#### Frontend
-
-- Node.js
-- Next.js
-- React
-- Material UI
-
-#### Backend
-
-- Python
-- SQLite
-- Torch
+**Problem Statement**: Develop a solution that empowers the ageing population to achieve a financially secure retirement as the country becomes more affluent.
 
 ### Team Members
 
@@ -28,6 +13,46 @@ Develop a solution that empowers the ageing population to achieve a financially 
 - De Hui (UI/UX Designer)
 - Dean (Marketing)
 - ~~Jian Wei (The Extra)~~
+
+### Tech Stack
+
+#### Frontend
+
+- Next.js (w/ TypeScript)
+- Material UI
+
+#### Backend
+
+- Python
+- Torch
+- SQLite
+
+### Data Pipeline
+
+1. Real-Time Speech Recognition
+
+Captures audio from the microphone.
+Processes audio data in real-time.
+Transcribes the audio and stores the transcription in the SQLite database.
+
+2. Batch Audio Transcription
+
+Reads audio files.
+Processes and transcribes the audio data.
+Stores the transcription result in the SQLite database.
+
+3. API Service
+
+Exposes endpoints for real-time speech recognition and batch transcription.
+Handles incoming requests and triggers the corresponding processes.
+Stores the transcription results and responses in the SQLite database.
+Returns results to the client using Postman.
+
+4. Docker Setup
+
+Containers for training, inference, real-time processing, batch transcription, API service, and SQLite database.
+Uses Docker Compose to manage multi-container setup and ensure services are integrated properly.
+The SQLite database container is set up to persist data across container restarts.
 
 ## ⚒️ Usage
 
@@ -49,7 +74,7 @@ Develop a solution that empowers the ageing population to achieve a financially 
 1. Download FFmpeg from [here](https://github.com/BtbN/FFmpeg-Builds/releases)
 2. Extract the folder as `/mods/ffmpeg` relative to this repository
 3. Go to `/mods/backend` relative to this repository
-4. Initialize virtual environment: `py -m venv .venv`
-5. Activate virtual environment: `./.venv/Scripts/activate.bat` (assuming you're using Windows)
-4. Install dependencies: `pip install -r requirements`
-5. Run the backend server: `python api_service.py`
+4. Initialize Python virtual environment: `py -m venv .venv`
+5. Activate Python virtual environment: `./.venv/Scripts/activate.bat` (assuming you're using Windows)
+6. Install dependencies: `pip install -r requirements.txt`
+7. Run the backend server: `python api_service.py`
