@@ -1,4 +1,7 @@
-# Finn
+<h1>
+    <img src="public/favicon.png" alt="Icon" height="30">
+    <span>Finn</span>
+</h1>
 
 Simplify your retirement planning with personal financial advice, provided by AI-boosted advisor on your phone.
 
