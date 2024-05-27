@@ -27,28 +27,28 @@ Simplify your retirement planning with personal financial advice, provided by AI
 - Torch
 - SQLite
 
-### Data Pipeline
+### Development Pipeline
 
-1. Real-Time Speech Recognition
+#### Real-Time Speech Recognition
 
 Captures audio from the microphone.
 Processes audio data in real-time.
 Transcribes the audio and stores the transcription in the SQLite database.
 
-2. Batch Audio Transcription
+#### Batch Audio Transcription
 
 Reads audio files.
 Processes and transcribes the audio data.
 Stores the transcription result in the SQLite database.
 
-3. API Service
+#### API Service
 
 Exposes endpoints for real-time speech recognition and batch transcription.
 Handles incoming requests and triggers the corresponding processes.
 Stores the transcription results and responses in the SQLite database.
 Returns results to the client using Postman.
 
-4. Docker Setup
+#### Docker Setup
 
 Containers for training, inference, real-time processing, batch transcription, API service, and SQLite database.
 Uses Docker Compose to manage multi-container setup and ensure services are integrated properly.
@@ -78,3 +78,7 @@ The SQLite database container is set up to persist data across container restar
 5. Activate Python virtual environment: `./.venv/Scripts/activate.bat` (assuming you're using Windows)
 6. Install dependencies: `pip install -r requirements.txt`
 7. Run the backend server: `python api_service.py`
+
+## 📜 License
+
+Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
