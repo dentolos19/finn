@@ -62,7 +62,7 @@ def main(model='medium', non_english=False, energy_threshold=1000, record_timeou
 
     if model != "large" and not non_english:
         model = model + ".en"
-    audio_model = whisper.load_model(model, device=DEVICE)
+    audio_model = whisper.load_model(model, device=DEVICE, download_root="models")
 
     transcription = ['']
 

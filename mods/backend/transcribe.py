@@ -1,8 +1,8 @@
 import base64
 import os
 import subprocess
-# import sqlite3
 
+# import sqlite3
 import numpy as np
 import torch
 import whisper
@@ -18,7 +18,6 @@ def transcribe_audio_file(file_path, model="medium", non_english=False):
     sample_rate, audio_data = wavfile.read("audio-framed.wav")
 
     audio_np = np.frombuffer(audio_data, dtype=np.int16).astype(np.float32) / 32768.0
-
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     print("Using GPU to run.") if torch.cuda.is_available() else print(
         "Using CPU to run."
@@ -26,7 +25,7 @@ def transcribe_audio_file(file_path, model="medium", non_english=False):
 
     if model != "large" and not non_english:
         model = model + ".en"
-    audio_model = whisper.load_model(model, device=DEVICE)
+    audio_model = whisper.load_model(model, device=DEVICE, download_root="models")
 
     fp16 = torch.cuda.is_available()
     result = audio_model.transcribe(audio_np, fp16=fp16)

@@ -8,6 +8,9 @@
 # Cache files
 __pycache__/
 
+# Project-specific files
+models/
+
 # Miscellaneous files
 .DS_Store
 Desktop.ini
