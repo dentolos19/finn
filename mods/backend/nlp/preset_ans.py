@@ -64,11 +64,11 @@ def extract_keywords(sentence):
 def generate_response_with_xlnet(input_text):
     inputs = tokenizer.encode(input_text, return_tensors="pt")
     outputs = model.generate(
-        inputs, 
-        max_length=50, 
-        num_return_sequences=1, 
-        temperature=0.7, 
-        top_k=50, 
+        inputs,
+        max_length=50,
+        num_return_sequences=1,
+        temperature=0.7,
+        top_k=50,
         top_p=0.95,
         repetition_penalty=2.0,
         do_sample=True  # Enable sampling

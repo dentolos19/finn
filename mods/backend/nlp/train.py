@@ -27,11 +27,11 @@ def preprocess_data(data):
     texts = []
     labels = []
     label_map = {label: i for i, label in enumerate(set(item['intent'] for item in data))}
-    
+
     for item in data:
         texts.append(f"{item['text']} {item.get('details', '')}")
         labels.append(label_map[item['intent']])
-    
+
     return texts, labels, label_map
 
 texts, labels, label_map = preprocess_data(data)

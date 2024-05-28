@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   train-container:
@@ -27,13 +27,13 @@ services:
       context: .
       dockerfile: nlp/dockerfile.realtime
     devices:
-      - /dev/snd:/dev/snd  # Required for accessing microphone
+      - /dev/snd:/dev/snd # Required for accessing microphone
     environment:
-      - PYTHONUNBUFFERED=1  # Ensures real-time logs
+      - PYTHONUNBUFFERED=1 # Ensures real-time logs
 
   transcribe-container:
     build:
       context: .
       dockerfile: nlp/dockerfile.transcribe
     environment:
-      - PYTHONUNBUFFERED=1  # Ensures real-time logs
+      - PYTHONUNBUFFERED=1 # Ensures real-time logs
