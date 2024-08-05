@@ -1,6 +1,6 @@
 <h1>
-    <img src="public/favicon.png" alt="Icon" height="30">
-    <span>Finn</span>
+  <img src="public/icon.png" alt="Icon" height="30">
+  <span>Finn</span>
 </h1>
 
 Simplify your retirement planning with personal financial advice, provided by AI-boosted advisor on your phone.
@@ -63,25 +63,14 @@ The SQLite database container is set up to persist data across container restar
 
 - [Node.js](https://nodejs.org) 20+
 - [pnpm](https://pnpm.io) 9+
-- [Python](https://python.org) 3.11+
+- [Python](https://python.org) 3.12+
 
 ### Installation
 
-#### Frontend
-
-1. Install dependencies: `pnpm install`
-2. Run the frontend server: `pnpm run dev`
-
-#### Backend
-
-1. Download FFmpeg from [here](https://github.com/BtbN/FFmpeg-Builds/releases)
-2. Extract the folder as `/mods/ffmpeg` relative to this repository
-3. Go to `/mods/backend` relative to this repository
-4. Initialize Python virtual environment: `py -m venv .venv`
-5. Activate Python virtual environment: `./.venv/Scripts/activate.bat` (assuming you're using Windows)
-6. Install dependencies: `pip install -r requirements.txt`
-7. Run the backend server: `python api_service.py`
+1. Setup the environment: `setup.ps1`
+2. Run the backend: `mod/backend/start.bat`
+3. Run the frontend: `pnpm run dev`
 
 ## 📜 License
 
-Distributed under the MIT License. See [LICENSE](./LICENSE) for more information.
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
