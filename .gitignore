@@ -6,16 +6,17 @@
 node_modules/
 
 # Output files
-out/
 build/
 dist/
+out/
 
 # Output files: Next.js
 .vercel/
 .next/
 next-env.d.ts
 
-# Output files: next-pwa
+# Project-specific files
+mods/ffmpeg/
 public/workbox-*.js
 public/workbox-*.js.map
 public/sw.js
