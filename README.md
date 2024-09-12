@@ -3,7 +3,7 @@
   <span>Finn</span>
 </h1>
 
-Simplify your retirement planning with personal financial advice, provided by AI-boosted advisor on your phone.
+Simplify your retirement planning with personal financial advice, provided by AI-boosted advisor on your phone!
 
 ## 🏢 Mission
 

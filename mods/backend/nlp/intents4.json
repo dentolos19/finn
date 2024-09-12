@@ -1,7 +1,0 @@
-[
-    {"intent": "retirement_digiportfolio", "text": "Retirement digiPortfolio", "details": "Glide into retirement with ease – from just S$1,000. Portfolio Management Fee 0.75% flat annual fee."},
-    {"intent": "portfolio_management", "text": "Portfolio Management", "details": "A smart and flexible portfolio – gradually transitions your portfolio between life stages till you reach retirement."},
-    {"intent": "investment_team_insights", "text": "Investment Insights", "details": "The Retirement digiPortfolio accounts for the number of years to your retirement age when determining the appropriate mix of equities and bonds."},
-    {"intent": "market_review", "text": "Q1 2024 Market Review", "details": "Resilient economic data helped investors get into the Spring spirit during the first quarter of 2024. Global equities outperformed fixed income investments."},
-    {"intent": "market_outlook", "text": "Market Outlook", "details": "JPMorgan Asset Management’s base case view is that we are in an environment of moderating growth and inflation, expected policy rate cuts, and continued low volatility."}
-]

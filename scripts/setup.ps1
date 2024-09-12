@@ -21,13 +21,15 @@ if (-not (Test-Path "mods/ffmpeg")) {
 
 }
 
+Set-Location "$PSScriptRoot/.."
+
 Write-Host "Installing dependencies for frontend..."
 Write-Host
 
 & pnpm install
 Write-Host
 
-Set-Location "$PSScriptRoot/../mods/backend"
+Set-Location "$PSScriptRoot/../src-backend"
 
 Write-Host "Installing dependencies for backend..."
 Write-Host

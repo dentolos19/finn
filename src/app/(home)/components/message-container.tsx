@@ -5,11 +5,7 @@ import { Paper, Typography } from "@mui/material";
 import { useState } from "react";
 import { BeatLoader } from "react-spinners";
 
-export default function MessageContainer(props: {
-  type: "bot" | "user";
-  message: string;
-  isLoading?: boolean;
-}) {
+export default function MessageContainer(props: { type: "bot" | "user"; message: string; isLoading?: boolean }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
 
   const msg = new SpeechSynthesisUtterance();

@@ -19,9 +19,7 @@ import {
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function HeaderPanel(props: {
-  onHelp?: () => void;
-}) {
+export default function HeaderPanel(props: { onHelp?: () => void }) {
   const router = useRouter();
 
   const [menuAnchor, setAnchorEl] = useState<null | HTMLElement>(null);

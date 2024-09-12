@@ -1,4 +1,4 @@
 {
-  "python.defaultInterpreterPath": "mods/backend/.venv",
-  "python.analysis.extraPaths": ["mods/backend"]
+  "python.defaultInterpreterPath": "src-backend/.venv",
+  "python.analysis.extraPaths": ["src-backend"]
 }

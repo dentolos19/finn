@@ -1,0 +1,27 @@
+[
+  {
+    "intent": "study_findings",
+    "text": "DBS-Manulife Retirement Wellness Study",
+    "details": "Singapore scored 46 out of 100 points on the index, compared to the regional average of 56 points."
+  },
+  {
+    "intent": "study_scope",
+    "text": "Survey Scope",
+    "details": "The research spans six markets: Singapore, Hong Kong, China, India, Indonesia, and Taiwan."
+  },
+  {
+    "intent": "survey_participants",
+    "text": "Survey Participants",
+    "details": "In Singapore, a total of 1,008 Singaporeans/Permanent Residents (PRs) between the ages of 40 and 60 took part in the research."
+  },
+  {
+    "intent": "retirement_preparedness",
+    "text": "Retirement Preparedness",
+    "details": "The Retirement Wellness Index measures retirement preparedness based on three key pillars: health, wealth, and social aspects."
+  },
+  {
+    "intent": "financial_preparation",
+    "text": "Financial Preparation",
+    "details": "Two in five respondents are not confident about their preparations for retirement. Among those who have started planning for retirement, more than half (56%) did not seek any form of advice."
+  }
+]

@@ -1,7 +1,0 @@
-[
-    {"intent": "sustainability_report", "text": "DBS Sustainability Report 2022", "date": "2022", "publisher": "DBS Group Holdings Ltd"},
-    {"intent": "ceo_message", "text": "CEO Message", "details": "2022 was yet another challenging year, but also offered many reasons for gratitude and hope."},
-    {"intent": "sustainability_approach", "text": "Our Approach", "details": "Our commitment to embed sustainability in the fabric of our business is strategically centred around our three sustainability pillars: Responsible Banking, Responsible Business Practices, and Impact Beyond Banking."},
-    {"intent": "responsible_banking", "text": "Responsible Banking", "details": "Our responsible banking practices support our customers’ transition towards lower-carbon business models, enhance their access to ESG investments, and deliver customised retail solutions."},
-    {"intent": "responsible_business_practices", "text": "Responsible Business Practices", "details": "We believe in doing the right thing by our people and embedding environmental and societal factors in our business operations."}
-]

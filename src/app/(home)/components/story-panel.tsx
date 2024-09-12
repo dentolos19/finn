@@ -1,10 +1,6 @@
 import { Paper } from "@mui/material";
 
-export default function StoryPanel(props: {
-  children?: React.ReactNode;
-  backgroundSrc: string;
-  onClick?: () => void;
-}) {
+export default function StoryPanel(props: { children?: React.ReactNode; backgroundSrc: string; onClick?: () => void }) {
   return (
     <Paper
       sx={{

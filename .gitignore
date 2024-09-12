@@ -16,7 +16,6 @@ out/
 next-env.d.ts
 
 # Project-specific files
-mods/ffmpeg/
 public/workbox-*.js
 public/workbox-*.js.map
 public/sw.js

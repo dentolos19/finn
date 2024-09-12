@@ -72,7 +72,7 @@ def main(data: str):
     decoded_data = base64.b64decode(data)
     with open("audio.webm", "wb") as file:
         file.write(decoded_data)
-    subprocess.call(["../ffmpeg/bin/ffmpeg.exe", "-i", "audio.webm", "audio.wav"])
+    subprocess.call(["../mods/ffmpeg/bin/ffmpeg.exe", "-i", "audio.webm", "audio.wav"])
     os.remove("audio.webm")
     return transcribe_audio_file("audio.wav")
 

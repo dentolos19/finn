@@ -1,8 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-export default function StoryGrid(props: {
-  children?: React.ReactNode;
-}) {
+export default function StoryGrid(props: { children?: React.ReactNode }) {
   return (
     <Box>
       <Typography

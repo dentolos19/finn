@@ -9,7 +9,6 @@ services:
       - ./nlp/trained_model:/app/trained_model
     command: python3 /app/train.py
     working_dir: /app
-
   inference-container:
     build:
       context: .
@@ -21,7 +20,6 @@ services:
     volumes:
       - ./nlp/trained_model:/app/trained_model
     working_dir: /app
-
   realtime-container:
     build:
       context: .
@@ -30,7 +28,6 @@ services:
       - /dev/snd:/dev/snd # Required for accessing microphone
     environment:
       - PYTHONUNBUFFERED=1 # Ensures real-time logs
-
   transcribe-container:
     build:
       context: .

@@ -104,10 +104,7 @@ export default function Page() {
     setDisclaimerPanelOpen(false);
   };
 
-  const nextStory = (option: {
-    label: string;
-    next: number;
-  }) => {
+  const nextStory = (option: { label: string; next: number }) => {
     const story = storyboard[option.next];
     setStory(story);
     setMessages((prev) => [

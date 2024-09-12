@@ -1,6 +1,0 @@
-[
-    {"intent": "srs_account_application", "text": "Application Process", "details": "In order to apply for the SRS Account through mail, you need to be an existing DBS/POSB savings/current/fixed deposit account holder."},
-    {"intent": "documents_required", "text": "Required Documents", "details": "Singaporeans & PR: Copy of NRIC (front & back). For Foreigners: Copy of Passport, Work Permit or Employment Pass (if any), and Declaration Form."},
-    {"intent": "account_agreement", "text": "Agreement Terms", "details": "I agree to abide by the Bank’s Terms and Conditions Governing SRS Account and Schedule of Charges."},
-    {"intent": "deposit_insurance_scheme", "text": "Insurance Coverage", "details": "Singapore dollar deposits under the Supplementary Retirement Scheme are insured by the Singapore Deposit Insurance Corporation, for up to S$50,000 in aggregate per depositor per Scheme member."}
-]
