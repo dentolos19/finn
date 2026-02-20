@@ -1,0 +1,28 @@
+# Editor configurations
+.vs/
+.idea/
+
+# Environment files
+.vercel/
+.next/
+.open-next/
+.wrangler/
+node_modules/
+*.d*
+
+# User files
+.env*
+!.env*.template
+
+# Project files
+public/workbox-*.js
+public/workbox-*.js.map
+public/sw.js
+public/sw.js.map
+public/worker-*.js
+
+# Miscellaneous files
+.DS_Store
+Desktop.ini
+Thumbs.db
+!.gitkeep

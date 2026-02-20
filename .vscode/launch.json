@@ -2,10 +2,37 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Start",
-      "type": "PowerShell",
+      "name": "App",
       "request": "launch",
-      "script": "scripts/start.ps1"
+      "type": "node-terminal",
+      "cwd": "${workspaceFolder}/src/app",
+      "command": "bun run dev",
+      "serverReadyAction": {
+        "pattern": "Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Server",
+      "request": "launch",
+      "type": "debugpy",
+      "cwd": "${workspaceFolder}/src/server",
+      "program": "${workspaceFolder}/src/server/api_service.py",
+      "justMyCode": true
+    }
+  ],
+  "compounds": [
+    {
+      "name": "App + Server",
+      "configurations": ["App", "Server"],
+      "stopAll": true
+    },
+    {
+      "name": "Setup + App + Server",
+      "configurations": ["App", "Server"],
+      "preLaunchTask": "Setup",
+      "stopAll": true
     }
   ]
 }

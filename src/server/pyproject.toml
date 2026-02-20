@@ -1,0 +1,35 @@
+[project]
+name = "finn-server"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+  "datasets",
+  "fastapi",
+  "flask",
+  "nltk",
+  "numpy",
+  "openai-whisper",
+  "pydantic",
+  "pydub",
+  "pytz",
+  "scipy",
+  "spacy",
+  "SpeechRecognition",
+  "torch",
+  "transformers",
+  "uvicorn",
+]
+
+[project.optional-dependencies]
+realtime = ["pyaudio"]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

@@ -1,0 +1,21 @@
+# Editor configurations
+.vs/
+.idea/
+
+# Environment files
+.venv/
+__pycache__/
+
+# User files
+.env*
+!.env*.template
+
+# Project files
+models/
+audio.wav
+audio-framed.wav
+
+# Miscellaneous files
+.DS_Store
+Desktop.ini
+Thumbs.db

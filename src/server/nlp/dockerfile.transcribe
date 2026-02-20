@@ -1,0 +1,23 @@
+# Use the official Python image
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends git ffmpeg libavcodec-extra sqlite3 && \
+  rm -rf /var/lib/apt/lists/*
+RUN python -m pip install --no-cache-dir --upgrade pip uv
+
+# Install project dependencies
+COPY pyproject.toml ./
+RUN uv sync --no-dev
+
+# Copy project files
+COPY . .
+
+# Run the transcription script
+CMD ["uv", "run", "python", "transcribe.py"]
